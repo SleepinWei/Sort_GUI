@@ -58,16 +58,11 @@ class Sort():
         self.insertSort()
 
     def bubbleSort(self):
-        pos = self.step
-        minimum = self.arr[pos]
-        min_i = pos 
-        for i in range(pos,self.arr.shape[0]):
-            if self.arr[i] < minimum:
-                minimum = self.arr[i] 
-                min_i = i 
-        temp = self.arr[pos] 
-        self.arr[pos] = self.arr[min_i]
-        self.arr[min_i] = temp 
+        for i in range(0,self.arr.shape[0]-1):
+            if self.arr[i] > self.arr[i+1]:
+                temp = self.arr[i] 
+                self.arr[i] = self.arr[i+1] 
+                self.arr[i+1] = temp
                 
         self.step += 1 
 
@@ -94,13 +89,25 @@ class Sort():
         self.quickSort(i+1,r)
 
 
-    def chooseSort():
-        pass
+    def chooseSort(self):
+        pos = self.step
+        minimum = self.arr[pos]
+        min_i = pos 
+        for i in range(pos,self.arr.shape[0]):
+            if self.arr[i] < minimum:
+                minimum = self.arr[i] 
+                min_i = i 
+        temp = self.arr[pos] 
+        self.arr[pos] = self.arr[min_i]
+        self.arr[min_i] = temp 
+                
+        self.step += 1 
 
 
 if __name__ == "__main__":
     s = Sort()
     s.arr = np.random.randint(1,100,(20,))
     print(s.arr)
-    s.quickSort(0,s.arr.shape[0]-1)
-    print(s.arr)
+    for i in range(s.arr.shape[0]):
+        s.bubbleSort()
+        print(s.arr)

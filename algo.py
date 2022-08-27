@@ -1,16 +1,42 @@
+from math import ceil
 import numpy as np 
 
 class Sort():
     def __init__(self) -> None:
         self.arr = None  # the array to be sorted 
+        self.prevArr = None 
         self.mode = 0  # mode of sorting 
         self.step = 0  # which step is the current sorting in 
         self.groups = 2 
     
-    def initArr(self):
+    def initArr(self,arr):
         # numpy arr 
-        pass
-    
+        self.arr = arr 
+        self.prevArr = arr.copy() 
+
+    def reset(self):
+        self.step = 0 
+
+    def nextstep(self):
+        self.prevArr = self.arr.copy() 
+
+        if self.mode == "insert":
+            self.insertSort()
+        elif self.mode == "halfInsert":
+            self.halfInsertSort()
+        elif self.mode == "hill":
+            if self.step == ceil(self.arr.shape[0] / self.groups):
+                self.hillSort()
+            else:
+                self.hillMerge()
+
+        elif self.mode == "bubble":
+            self.bubbleSort()
+        elif self.mode == "quick":
+            self.quickSort()
+        elif self.mode == "choose":
+            self.chooseSort()
+        
     def insertSort(self):
         pos = self.step 
         val = self.arr[pos]

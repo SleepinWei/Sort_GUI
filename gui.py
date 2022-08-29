@@ -1,5 +1,3 @@
-from cgitb import text
-from distutils.command.bdist import show_formats
 import tkinter as tk 
 from tkinter import Canvas, StringVar, ttk
 from tkinter import W,E,S,N
@@ -45,7 +43,9 @@ class GUI():
         def parse():
             # 字符串解析为数组
             arrStr = self.inputArr.get() 
-            return arrStr.strip().split(" ")
+            temp = arrStr.strip().split(" ")
+            temp = [int(i) for i in temp]
+            return temp
 
 
         self.mode = tk.StringVar(value="insert")

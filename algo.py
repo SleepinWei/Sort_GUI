@@ -33,7 +33,7 @@ class Sort():
         elif self.mode == "bubble":
             self.bubbleSort()
         elif self.mode == "quick":
-            self.quickSort()
+            self.quickSort(0,len(self.arr)-1)
         elif self.mode == "choose":
             self.chooseSort()
         
